@@ -20,6 +20,10 @@ use Tymon\JWTAuth\Http\Middleware\AuthenticateAndRenew;
 
 Route::prefix('v1/user')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
+
+    Route::middleware(['jwt.verify','user.verify'])->group(function () {
+        Route::get('/', [UserController::class, 'show']);
+    });
 });
 
 
