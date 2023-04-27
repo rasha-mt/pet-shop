@@ -47,7 +47,8 @@ class UserControllerTest extends TestCase
             ->assertUnauthorized();
     }
 
-    public function test_admin_cant_access_user_data(){
+    public function test_admin_cant_access_user_data()
+    {
         $user = UserFactory::new()->admin()->create([
             'email'    => 'rasha@test.com',
             'password' => '123456',
@@ -57,5 +58,18 @@ class UserControllerTest extends TestCase
         $this->actingAs($user)
             ->getJson("api/v1/user")
             ->assertUnauthorized();
+    }
+
+    public function test_user_can_logout_from_his_account()
+    {
+        $user = UserFactory::new()->create([
+            'email'    => 'rasha@test.com',
+            'password' => '123456',
+        ]);
+
+        $this->actingAs($user)
+            ->getJson("api/v1/user/logout")
+            ->assertSuccessful();
+
     }
 }

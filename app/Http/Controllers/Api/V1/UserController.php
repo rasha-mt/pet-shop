@@ -20,11 +20,11 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        //Request is validated, do logout
         try {
-            $token = $request->header('token');
-            JWTAuth::invalidate($token);
-            return $this->success( 'User has been logged out');
+
+            JWTAuth::unsetToken();
+
+            return $this->success();
 
         } catch (JWTException $exception) {
             return $this->failed();
