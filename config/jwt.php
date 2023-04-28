@@ -257,7 +257,7 @@ return [
     | Providers
     |--------------------------------------------------------------------------
     |
-    | Specify the various providers used throughout the package.
+    | Specify the various providers used throughout the packages.
     |
     */
 

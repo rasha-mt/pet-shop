@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('is_admin');
             $table->uuid('avatar')->nullable();
-            $table->string
-            ('address');
+            $table->string('address');
             $table->string('phone_number');
             $table->boolean('is_marketing');
             $table->rememberToken();
