@@ -1,0 +1,30 @@
+{
+  "name": "petshop/currency-exchange",
+  "description": "exchange rate for the given amount in the same standard format",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Petshop\\CurrencyExchange\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Petshop\\CurrencyExchange\\CERServiceProvider"
+      ]
+    }
+  },
+  "authors": [
+    {
+      "name": "Rasha Matar"
+    }
+  ],
+  "require": {
+    "orchestra/parser": "8.x"
+  },
+  "minimum-stability": "dev",
+  "require-dev": {
+    "phpunit/phpunit": "10.2.x-dev"
+  }
+}

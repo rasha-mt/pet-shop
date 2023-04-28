@@ -1,11 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\UserController;
-use Tymon\JWTAuth\Http\Middleware\AuthenticateAndRenew;
+use App\Http\Controllers\Api\ExchangeCurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +16,28 @@ use Tymon\JWTAuth\Http\Middleware\AuthenticateAndRenew;
 |
 */
 
-Route::prefix('v1/user')->group(function () {
-    Route::post('login', [AuthController::class, 'login']);
+Route::prefix('v1')->group(function () {
+    Route::prefix('user/')->group(function () {
+        Route::post('login', [AuthController::class, 'login']);
 
-    /** routes for authenticated  user */
-    Route::middleware(['jwt.verify', 'user.verify'])->group(function () {
-        Route::get('/', [UserController::class, 'show']);
+        /** routes for authenticated  user */
+        Route::middleware(['jwt.verify', 'user.verify'])->group(function () {
+            Route::get('/', [UserController::class, 'show']);
+        });
+
+        /** routes for authenticated admin and user */
+        Route::middleware(['jwt.verify'])->group(function () {
+            Route::get('/logout ', [UserController::class, 'logout']);
+        });
     });
 
-    /** routes for authenticated admin and user */
-    Route::middleware(['jwt.verify'])->group(function () {
-        Route::get('/logout ', [UserController::class, 'logout']);
+    Route::middleware(['jwt.verify', 'user.verify'])->group(function () {
+        Route::get('/product/{product}', [UserController::class, 'show']);
     });
 });
+
+
+
+
 
 
