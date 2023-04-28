@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\ExchangeCurrencyController;
 
 /*
@@ -32,7 +33,7 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::middleware(['jwt.verify', 'user.verify'])->group(function () {
-        Route::get('/product/{product}', [UserController::class, 'show']);
+        Route::get('/product/{product}', [ProductController::class, 'exchangeToCurrency']);
     });
 });
 
