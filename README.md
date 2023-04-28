@@ -23,3 +23,9 @@ To install through composer, run the following command from terminal:
    To migrate database files:
 
     php artisan migrate
+
+  To pull custom packages into this project you need to run:
+
+    composer require petshop/currency-exchange:dev-main
+
+    
